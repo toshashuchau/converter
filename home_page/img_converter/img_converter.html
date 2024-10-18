@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Upload Image and Preview</title>
+    <link rel="stylesheet" href="img_conveter.css">
+</head>
+<body>
+    <form onsubmit="return false;">
+        <h2>Upload Image & Enter Details</h2>
+
+        <label for="nameInput">Enter Your Name:</label>
+        <input type="text" id="nameInput" required placeholder="Enter your name" onchange="copyToTextarea()">
+
+        <label for="dateInput">Enter Date:</label>
+        <input type="text"  id="dateInput" name="date" onchange="copyToTextarea()">
+
+        <h3>Upload Image</h3>
+        <input type="file" id="imageUpload" accept="image/*" onchange="showImage(event)">
+
+       <!-- <button id="download" >Download</button>-->
+       <div class="button"  id="download" data-tooltip="Download">
+        <div class="button-wrapper">
+          <div class="text">Download</div>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+            </span>
+          </div>
+        </div>
+
+
+
+
+
+        
+    </form>
+
+    <div class="upload-container" id="upload-container">
+        <div id="imagePreview">
+            <!-- The uploaded image will be displayed here -->
+        </div>
+
+        <textarea id="textOutput" rows="2" readonly></textarea>
+        <textarea id="DateOutput" rows="2" readonly></textarea>
+    </div>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        
+        <script>
+            document.getElementById('download').addEventListener('click', function() {
+                html2canvas(document.getElementById('upload-container')).then(canvas => {
+                // Convert canvas to JPEG data URL
+                const imgData = canvas.toDataURL('image/jpeg');
+                
+                // Create a link element and set the download attribute
+                const link = document.createElement('a');
+                link.href = imgData;
+                link.download = 'capture.jpg';
+                
+                // Trigger the download by simulating a click
+                link.click();
+            });
+        });
+
+        function showImage(event) {
+            const imagePreviewDiv = document.getElementById('imagePreview');
+            const file = event.target.files[0];
+
+            if (file) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.style.maxWidth = '350px';
+                img.style.height = '330PX';
+                imagePreviewDiv.innerHTML = ''; // Clear previous image
+                imagePreviewDiv.appendChild(img); // Append new image
+            }
+        }
+
+        function copyToTextarea() {
+            const nameText = document.getElementById('nameInput').value.toUpperCase();
+            const dateInput = document.getElementById('dateInput').value;
+
+            const textarea = document.getElementById('textOutput');
+            textarea.value = nameText;
+
+            const dateOutput = document.getElementById('DateOutput');
+            dateOutput.value = dateInput;
+        }
+    </script>
+    
+</body>
+</html>

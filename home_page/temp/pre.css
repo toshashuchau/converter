@@ -1,0 +1,69 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0px;
+    height: 724px;
+    width: 724px;
+   
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+#uploadedPic {
+    position: absolute;
+    top: 28.3%;
+    left: 10.5%;
+    height: 5cm;
+    width: 4cm;
+}
+#uploadedSign{
+    position: absolute;
+    top: 28.3%;
+    left: 32%;
+    height: 72px;
+    width: 170px;
+
+
+}
+#uploadedWriting{
+    position: absolute;
+top: 842px;
+left: 7.75%;
+height: 125px;
+width: 566px;
+
+}
+img{
+    margin: 0px;
+    height: 1024px;
+    width: 724px;
+    
+}
+
+#container{
+    height: 1024px;
+    width: 724px;
+}

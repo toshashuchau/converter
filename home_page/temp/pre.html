@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="pre.css">
+    <title>Preview Uploaded Files</title>
+</head>
+<body>
+   
+    <div id="container">
+        <img src="/test/peb.jpg" id="img" alt="template" width="724" height="1024">
+       
+            <div id="cont">
+                
+                <img id="uploadedPic" src="" alt="Uploaded Picture">
+                <img id="uploadedSign" src="" alt="Uploaded Sign">      
+                <img id="uploadedWriting" src="" alt="Uploaded Writing">
+            </div>
+       
+    </div>
+
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // Load preview images from localStorage
+        function previewFiles() {
+            var uploadedPic = localStorage.getItem('uploadedPic');
+            var uploadedSign = localStorage.getItem('uploadedSign');
+            var uploadedWriting = localStorage.getItem('uploadedWriting');
+            var success = 0;
+            
+            if (uploadedPic) {
+                document.getElementById('uploadedPic').src = uploadedPic;
+                success = 1;
+            } else {
+                document.getElementById('uploadedPic').alt = "No picture uploaded.";
+            }
+
+            if (uploadedSign) {
+                document.getElementById('uploadedSign').src = uploadedSign;
+                success = 1;
+            } else {
+                document.getElementById('uploadedSign').alt = "No sign uploaded.";
+            }
+
+            if (uploadedWriting) {
+                document.getElementById('uploadedWriting').src = uploadedWriting;
+                success = 1;
+            } else {
+                document.getElementById('uploadedWriting').alt = "No writing uploaded.";
+            }
+        }
+
+        // Capture the 'container' div and download it as an image
+        function captureAndDownload() {
+            const container = document.getElementById('container');
+            html2canvas(container).then((canvas) => {
+                img.style.maxWidth = '724px';
+                img.style.height = '1024PX';
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/jpeg', 1.0);
+                link.download = 'container.jpg';
+                link.click();
+                
+            });
+        }
+
+        // Ensure both functions run on window load
+        window.onload = function() {
+            // First load the preview files
+            previewFiles();
+            
+            // Delay capturing to ensure everything is loaded
+            setTimeout(captureAndDownload, 1000); // 1 second delay to ensure content is ready
+        };
+    </script>
+</body>
+</html>

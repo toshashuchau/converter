@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="temp.css">
+    <title>Upload Images</title>
+</head>
+<body>
+    <form onsubmit="return false;">
+        <h2>Upload Image & Enter Details</h2>
+
+        <label for="picUpload">Upload Picture:</label>
+        <input type="file" id="picUpload" accept="image/*" onchange="storeFile()">
+
+        <label for="signUpload">Upload Sign:</label>
+        <input type="file" id="signUpload" accept="image/*" onchange="storeFile()">
+
+        <label for="writingUpload">Upload Writing:</label>
+        <input type="file" id="writingUpload" accept="image/*" onchange="storeFile()">
+
+        <div class="button" id="download" data-tooltip="Download" onclick="goToPreviewPage()">
+            <div class="button-wrapper">
+                <div class="text">Download</div>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path>
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // Store files in localStorage
+        function storeFile() {
+            var picInput = document.getElementById('picUpload');
+            var fileA = picInput.files[0];
+          
+            if (fileA) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('uploadedPic', e.target.result);
+                };
+                reader.readAsDataURL(fileA);
+            }
+
+            var signInput = document.getElementById('signUpload');
+            var fileB = signInput.files[0]; // Corrected to use files[0]
+          
+            if (fileB) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('uploadedSign', e.target.result);
+                };
+                reader.readAsDataURL(fileB);
+            }
+
+            var writingInput = document.getElementById('writingUpload');
+            var fileC = writingInput.files[0]; // Corrected to use files[0]
+          
+            if (fileC) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('uploadedWriting', e.target.result);
+                };
+                reader.readAsDataURL(fileC);
+            }
+        }
+
+        function goToPreviewPage() {
+            if (localStorage.getItem('uploadedPic') && localStorage.getItem('uploadedSign') && localStorage.getItem('uploadedWriting')) {
+                window.location.href = 'pre.html';
+               
+            } else {
+                alert('Please upload a file first.');
+            }
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer with Drag-to-Crop</title>
+    <link rel="stylesheet" href="resize.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Resizer with Drag-to-Crop</h1>
+        
+        <!-- Input Form Section -->
+        <section class="input-form">
+            <h2>Upload and Adjust Image</h2>
+            <label for="file">Upload Image: </label>
+            <input type="file" id="file" accept="image/*"><br><br>
+
+            <label for="width">Width: </label>
+            <input type="number" id="width" min="1" value="300"> px
+
+            <label for="height">Height: </label>
+            <input type="number" id="height" min="1" value="300"> px<br><br>
+
+            <label for="dpi">DPI: </label>
+            <input type="number" id="dpi" min="1" value="72"><br><br>
+
+            <label for="brightness">Brightness: </label>
+            <input type="range" id="brightness" min="0" max="200" value="100">%<br><br>
+
+            <button id="resizeBtn">Resize Image</button>
+        </section>
+
+        <!-- Preview Section -->
+        <section class="preview">
+            <h2>Image Preview</h2>
+            <canvas id="canvas"></canvas>
+        </section>
+
+        <!-- Crop Section -->
+        <section class="crop-form">
+            <h2>Crop Image</h2>
+            <button id="cropBtn">Apply Crop</button><br><br>
+            <a id="downloadLink" download="resized-image.png">Download Image</a>
+        </section>
+    </div>
+
+    <script src="resize.js"></script>
+</body>
+</html>

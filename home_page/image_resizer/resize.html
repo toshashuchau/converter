@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="resize.css">
+
+</head>
+<body>
+    <h1>Image Resizer</h1>
+    
+    <div class="controls">
+        <label for="file">Upload Image: </label>
+        <input type="file" id="file" accept="image/*"><br><br>
+        
+        <label for="width">Width: </label>
+        <input type="number" id="width" min="1" value="300"> px
+        
+        <label for="height">Height: </label>
+        <input type="number" id="height" min="1" value="300"> px<br><br>
+
+        <label for="dpi">DPI: </label>
+        <input type="number" id="dpi" min="1" value="72"><br><br>
+        
+        <label for="brightness">Brightness: </label>
+        <input type="range" id="brightness" min="0" max="200" value="100">%<br><br>
+
+        <label for="crop">Crop (x, y, width, height): </label>
+        <input type="number" id="cropX" min="0" value="0"> 
+        <input type="number" id="cropY" min="0" value="0"> 
+        <input type="number" id="cropWidth" min="1" value="300"> 
+        <input type="number" id="cropHeight" min="1" value="300"><br><br>
+
+        <button id="resizeBtn">Resize Image</button>
+        <button id="cropBtn">Crop Image</button>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    <br><br>
+    <a id="downloadLink" download="resized-image.png">Download Image</a>
+
+    <script src="resize.js"></script>
+</body>
+</html>
